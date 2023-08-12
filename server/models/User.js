@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
    {
@@ -39,6 +40,25 @@ const userSchema = new mongoose.Schema(
    },
    { timestamps: true }
 );
+
+//to hash password before saving to DB,
+//calls a middleware function before the save method is executed on a user object.
+userSchema.pre("save", async function (next) {
+   try {
+      //ensure that the password is only hashed when it's being created or modified, and not on every save operation
+      if (!this.isModified("password")) {
+         return next();
+      }
+
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(this.password, salt);
+
+      this.password = hashedPassword;
+      next();
+   } catch (error) {
+      next(error);
+   }
+});
 
 const User = mongoose.model("User", userSchema);
 
