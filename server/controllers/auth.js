@@ -62,11 +62,13 @@ export const login = async (req, res) => {
          { expiresIn: "1d" }
       );
 
-      delete user.password;
+      // delete user.password;
+      const userObject = user.toObject();
+      delete userObject.password;
 
       res.status(200).json({
          token,
-         user,
+         userObject,
       });
    } catch (err) {
       res.status(500).json({ error: err.message });

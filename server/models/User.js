@@ -44,7 +44,6 @@ const userSchema = new mongoose.Schema(
 //to hash password before saving to DB,
 //calls a middleware function before the save method is executed on a user object.
 userSchema.pre("save", async function (next) {
-   try {
       //ensure that the password is only hashed when it's being created or modified, and not on every save operation
       if (!this.isModified("password")) {
          return next();
@@ -55,9 +54,6 @@ userSchema.pre("save", async function (next) {
 
       this.password = hashedPassword;
       next();
-   } catch (error) {
-      next(error);
-   }
 });
 
 const User = mongoose.model("User", userSchema);
