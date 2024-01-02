@@ -14,6 +14,9 @@ import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { verifyToken } from "./middleware/auth.js";
 import { createPost } from "./controllers/posts.js";
+import User from "./models/User.js";
+import Post from "./models/Post.js";
+import { users, posts } from "./data/index.js";
 
 //* CONFIGURATION
 const __filename = fileURLToPath(import.meta.url);
@@ -35,7 +38,7 @@ const storage = multer.diskStorage({
       cb(null, "public/assets");
    },
    filename: (req, file, cb) => {
-      cd(null, file.originalname);
+      cb(null, file.originalname);
    },
 });
 const upload = multer({ storage });
@@ -59,6 +62,11 @@ mongoose
    .then(() => {
       app.listen(PORT, () => {
          console.log(`Server is running on port ${PORT}`);
+
+         //!Add data one time
+         // User.insertMany(users);
+         // Post.insertMany(posts);
+
       });
    })
    .catch((error) => {y

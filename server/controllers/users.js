@@ -12,8 +12,7 @@ export const getUser = async (req, res) => {
       //     res.status(404).json({ msg: "User not found." });
       // }
 
-      const userObject = user.toObject();
-      delete userObject.password;
+      const userObject = user.serializeWithoutPassword();
 
       res.status(200).json(userObject);
    } catch (err) {
