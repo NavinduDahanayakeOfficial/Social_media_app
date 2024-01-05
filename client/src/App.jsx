@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        <CssBaseline />   
         <Routes>
           <Route path="/" element={<LoginPage />}/>
           <Route path="/home" element={<HomePage />}/>
@@ -31,5 +31,8 @@ function App() {
     </div>
   )
 }
+
+//CssBaseline is a component that applies basic CSS resets to the page. It is required for Material UI to work properly.
+//This baseline ensures a consistent starting point for styling your website, removing browser-specific inconsistencies and allowing you to build upon this foundation with your own styles.
 
 export default App
