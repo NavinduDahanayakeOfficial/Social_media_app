@@ -14,10 +14,10 @@ import {
   PURGE,
   REGISTER
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';  // defaults to localStorage for web
 import { PersistGate } from 'redux-persist/integration/react';
 
-const persistConfig = { key: "root", storage, version: 1 };
+const persistConfig = { key: "root", storage, version: 1 }; //stores in the local storage
 const persistedReducer =  persistReducer(persistConfig, authReducer);
 
 const store = configureStore({
