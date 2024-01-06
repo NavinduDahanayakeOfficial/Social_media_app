@@ -33,7 +33,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const user = userSelector(state => state.user); 
+    const user = useSelector((state) => state.user); 
 
     //useMediaQuery is a hook that returns true if the screen is smaller than the breakpoint
     //it is a hook from material ui
@@ -41,14 +41,15 @@ const Navbar = () => {
 
     const theme = useTheme(); //returns the theme object
     //using this theme object, we can access the colors and typography of the theme
+    const primary = theme.palette.primary.main;
     const neutralLight = theme.palette.neutral.light;
-    const neutralDark = theme.palette.neutral.dark;
+    const dark = theme.palette.neutral.dark;
     const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
-    const alt = theme.palette.alt;
+    const alt = theme.palette.background.alt;
 
-    const fullName = `${user.firstName} ${user.lastName}`;
-
+    //const fullName = `${user.firstName} ${user.lastName}`;
+    const fullName = "John Doe";
 
     //in flexBetween, we can pass props to the Box component
     //gap is the space between the children, that means space between flex items
@@ -61,6 +62,7 @@ const Navbar = () => {
                 <Typography
                     fontWeight="bold"
                     fontSize="clamp(1rem, 2rem, 2.25rem)"
+                    color={primary}
                     onClick={() => navigate("/home")}
                     sx={{
                         "&:hover":{
@@ -79,6 +81,8 @@ const Navbar = () => {
                         </IconButton>
                     </FlexBetween>
                 )}
+            </FlexBetween>
+
                 {/*DESKTOP NAVBAR*/}
                 {isNonMobileScreens ? (
                     <FlexBetween gap="2rem">
@@ -134,7 +138,7 @@ const Navbar = () => {
                     zIndex="10"
                     maxWidth="500px"
                     minWidth="300px"
-                    bakcgroundColor={background}
+                    backgroundColor={background}
                   >
                     {/*CLOSE BUTTON*/}
                     <Box display="flex" justifyContent="flex-end" padding="1rem">
@@ -186,13 +190,13 @@ const Navbar = () => {
                                 <MenuItem value={fullName}>
                                     <Typography>{fullName}</Typography>
                                 </MenuItem>
-                                <MenuItem onClick={() => dispatch(setLogout())}>Logout                                </MenuItem>
+                                <MenuItem onClick={() => dispatch(setLogout())}>Logout</MenuItem>
                             </Select>
                         </FormControl>
                     </FlexBetween>
                   </Box>  
                 )}
-            </FlexBetween>
+            
         </FlexBetween>
     )
 }
