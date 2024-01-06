@@ -62,7 +62,7 @@ const Navbar = () => {
                 <Typography
                     fontWeight="bold"
                     fontSize="clamp(1rem, 2rem, 2.25rem)"
-                    color={primary}
+                    color={primary}  /*instead you also can use color="primary" it also get the theme.palette.primaey.main from the theme and we do not need to write the  'const primary = theme.palette.primary.main;'*/
                     onClick={() => navigate("/home")}
                     sx={{
                         "&:hover":{
