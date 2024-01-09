@@ -4,7 +4,7 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
-import Form from "./Form";
+import Form from "./Form.jsx";
 
 
 const LoginPage = () => {
@@ -43,9 +43,9 @@ const LoginPage = () => {
                         mb: "1.5rem"
                     }} 
                 >
-                    Welcome to SocialMedia, the latest social media platform"
+                    Welcome to SocialMedia, the latest social media platform
                 </Typography>
-                <Form></Form>
+                <Form />
             </Box>
         </Box>
     )
